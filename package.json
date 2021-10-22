@@ -8,6 +8,10 @@
   "scripts": {
     "prebuild": "rimraf dist",
     "build": "nest build",
+    "docker:login": "sudo aws ecr get-login-password --region ap-northeast-2 | docker login --username AWS --password-stdin 932651194507.dkr.ecr.ap-northeast-2.amazonaws.com",
+    "docker:build": "docker build -t test-server .",
+    "docker:push": "docker tag test-server:latest 932651194507.dkr.ecr.ap-northeast-2.amazonaws.com/test-server:latest",
+    "docker:start": "docker run -p 8071:3000 -d seungmin/nestjs-server",
     "format": "prettier --write \"src/**/*.ts\" \"test/**/*.ts\"",
     "start": "nest start",
     "start:dev": "nest start --watch",
